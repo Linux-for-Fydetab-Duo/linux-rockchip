@@ -395,5 +395,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-aio-3588l.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-tablet-rk806-single-v10.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-tablet-v10.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-tablet-v11.dtb
+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-tablet-12c-linux.dtb
 
 subdir-y := $(dts-dirs) overlay
