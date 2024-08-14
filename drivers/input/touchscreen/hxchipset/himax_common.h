@@ -40,6 +40,7 @@
 #include <linux/version.h>
 #include <linux/time64.h>
 #include <drm/drm_edid.h>
+#define MIPI_DSI_MODE_EOT_PACKET    (1 << 9)
 
 #if defined(CONFIG_OF)
 	#include <linux/of_gpio.h>
