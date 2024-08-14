@@ -39,6 +39,7 @@
 #include <linux/kallsyms.h>
 #include <linux/version.h>
 #include <linux/time64.h>
+#include <drm/drm_edid.h>
 
 #if defined(CONFIG_OF)
 	#include <linux/of_gpio.h>

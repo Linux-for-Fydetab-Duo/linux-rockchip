@@ -28,6 +28,8 @@
 #include <linux/of_platform.h>
 #include <linux/platform_device.h>
 #include <linux/regulator/consumer.h>
+#include <linux/backlight.h>
+#include <linux/i2c.h>
 
 #include <video/display_timing.h>
 #include <video/mipi_display.h>
