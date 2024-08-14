@@ -5116,12 +5116,6 @@ static int __init panel_simple_fyde_init(void)
 	if (err < 0)
 		return err;
 
-	if (IS_ENABLED(CONFIG_SPI_MASTER)) {
-		err = spi_register_driver(&panel_simple_spi_driver);
-		if (err < 0)
-			return err;
-	}
-
 	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI)) {
 		err = mipi_dsi_driver_register(&panel_simple_dsi_driver);
 		if (err < 0)
@@ -5141,9 +5135,6 @@ static void __exit panel_simple_fyde_exit(void)
 {
 	if (IS_ENABLED(CONFIG_DRM_MIPI_DSI))
 		mipi_dsi_driver_unregister(&panel_simple_dsi_driver);
-
-	if (IS_ENABLED(CONFIG_SPI_MASTER))
-		spi_unregister_driver(&panel_simple_spi_driver);
 
 	platform_driver_unregister(&panel_simple_platform_driver);
 }
