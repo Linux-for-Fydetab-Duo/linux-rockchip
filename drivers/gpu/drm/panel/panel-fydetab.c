@@ -40,6 +40,8 @@
 #include <drm/drm_panel.h>
 #include <drm/display/drm_dsc.h>
 
+#include <uapi/linux/media-bus-format.h> /* for MEDIA_BUS_FMT_... */
+
 #include "panel-simple.h"
 
 struct panel_cmd_header {
