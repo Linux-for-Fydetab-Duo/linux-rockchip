@@ -38,6 +38,7 @@
 #include <drm/drm_device.h>
 #include <drm/drm_mipi_dsi.h>
 #include <drm/drm_panel.h>
+#include <drm/drm_edid.h>
 #include <drm/display/drm_dsc.h>
 
 #include <uapi/linux/media-bus-format.h> /* for MEDIA_BUS_FMT_... */
