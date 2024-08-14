@@ -282,7 +282,7 @@
 	rockchip,lane-rate = <676000>;
 	dsi0_panel: panel@0 {
 		status = "okay";
-		compatible = "simple-panel-dsi";
+		compatible = "simple-panel-dsi-fyde";
 		reg = <0>;
 		backlight = <&backlight>;
 		power-supply = <&vcc_avee>;
