@@ -35,8 +35,7 @@ struct pnc357db1 {
 	struct mipi_dsi_device *dsi;
 	const struct pnc357db1_panel_desc *desc;
 
-	struct regulator *vdd;
-	struct regulator *vccio;
+	struct regulator *vcc_avee;
 	struct gpio_desc *reset;
 };
 
@@ -50,14 +49,12 @@ static int pnc357db1_prepare(struct drm_panel *panel)
 	struct pnc357db1 *pnc357db1 = panel_to_pnc357db1(panel);
 	int ret;
 
-	ret = regulator_enable(pnc357db1->vccio);
+	ret = regulator_enable(pnc357db1->vcc_avee);
 	if (ret)
 		return ret;
 
-	ret = regulator_enable(pnc357db1->vdd);
-	if (ret)
-		return ret;
-
+	gpiod_set_value(pnc357db1->reset, 0);
+	msleep(120);
 	gpiod_set_value(pnc357db1->reset, 1);
 	msleep(120);
 
@@ -120,8 +117,7 @@ static int pnc357db1_unprepare(struct drm_panel *panel)
 	gpiod_set_value(pnc357db1->reset, 1);
 	msleep(120);
 
-	regulator_disable(pnc357db1->vdd);
-	regulator_disable(pnc357db1->vccio);
+	regulator_disable(pnc357db1->vcc_avee);
 
 	return 0;
 }
@@ -756,16 +752,10 @@ static int pnc357db1_probe(struct mipi_dsi_device *dsi)
 		return PTR_ERR(pnc357db1->reset);
 	}
 
-	pnc357db1->vdd = devm_regulator_get(dev, "vdd");
-	if (IS_ERR(pnc357db1->vdd)) {
-		DRM_DEV_ERROR(&dsi->dev, "failed to get vdd regulator\n");
-		return PTR_ERR(pnc357db1->vdd);
-	}
-
-	pnc357db1->vccio = devm_regulator_get(dev, "vccio");
-	if (IS_ERR(pnc357db1->vccio)) {
-		DRM_DEV_ERROR(&dsi->dev, "failed to get vccio regulator");
-		return PTR_ERR(pnc357db1->vccio);
+	pnc357db1->vcc_avee = devm_regulator_get(dev, "vcc_avee");
+	if (IS_ERR(pnc357db1->vcc_avee)) {
+		DRM_DEV_ERROR(&dsi->dev, "failed to get vcc_avee regulator\n");
+		return PTR_ERR(pnc357db1->vcc_avee);
 	}
 
 	drm_panel_init(&pnc357db1->panel, dev, &pnc357db1_funcs,
