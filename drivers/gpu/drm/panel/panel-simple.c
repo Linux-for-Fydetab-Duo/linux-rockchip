@@ -21,6 +21,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include <linux/backlight.h>
 #include <linux/delay.h>
 #include <linux/gpio/consumer.h>
 #include <linux/i2c.h>
@@ -5158,7 +5159,7 @@ static int panel_simple_dsi_probe(struct mipi_dsi_device *dsi)
 	return err;
 }
 
-static int panel_simple_dsi_remove(struct mipi_dsi_device *dsi)
+static void panel_simple_dsi_remove(struct mipi_dsi_device *dsi)
 {
 	int err;
 
@@ -5166,7 +5167,7 @@ static int panel_simple_dsi_remove(struct mipi_dsi_device *dsi)
 	if (err < 0)
 		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", err);
 
-	return panel_simple_remove(&dsi->dev);
+	panel_simple_remove(&dsi->dev);
 }
 
 static void panel_simple_dsi_shutdown(struct mipi_dsi_device *dsi)
@@ -5271,9 +5272,9 @@ static int panel_simple_spi_probe(struct spi_device *spi)
 	return panel_simple_probe(dev, desc);
 }
 
-static int panel_simple_spi_remove(struct spi_device *spi)
+static void panel_simple_spi_remove(struct spi_device *spi)
 {
-	return panel_simple_remove(&spi->dev);
+	panel_simple_remove(&spi->dev);
 }
 
 static void panel_simple_spi_shutdown(struct spi_device *spi)
