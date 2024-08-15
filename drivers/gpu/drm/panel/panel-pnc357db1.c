@@ -710,23 +710,23 @@ static const struct pnc357db1_init_cmd pnc357db1_init_cmds[] = {
 };
 
 static const struct pnc357db1_panel_desc pnc357db1_desc = {
-.mode = {
-	.clock           = 275000000,
+	.mode = {
+		.clock           = 275000000,
 
-	.hdisplay        = 1600,       // Horizontal active pixels
-	.hsync_start     = 1600 + 60,  // Horizontal active + Front Porch
-	.hsync_end       = 1600 + 60 + 20, // Horizontal sync start + Sync Length
-	.htotal          = 1600 + 60 + 20 + 20, // Horizontal sync end + Back Porch
+		.hdisplay        = 1600,       // Horizontal active pixels
+		.hsync_start     = 1600 + 60,  // Horizontal active + Front Porch
+		.hsync_end       = 1600 + 60 + 20, // Horizontal sync start + Sync Length
+		.htotal          = 1600 + 60 + 20 + 20, // Horizontal sync end + Back Porch
 
-	.vdisplay        = 2560,       // Vertical active pixels
-	.vsync_start     = 2560 + 112, // Vertical active + Front Porch
-	.vsync_end       = 2560 + 112 + 4, // Vertical sync start + Sync Length
-	.vtotal          = 2560 + 112 + 4 + 18, // Vertical sync end + Back Porch
+		.vdisplay        = 2560,       // Vertical active pixels
+		.vsync_start     = 2560 + 112, // Vertical active + Front Porch
+		.vsync_end       = 2560 + 112 + 4, // Vertical sync start + Sync Length
+		.vtotal          = 2560 + 112 + 4 + 18, // Vertical sync end + Back Porch
 
-	.width_mm        = 266,
-	.height_mm       = 166, 
-	.type            = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-}
+		.width_mm        = 266,
+		.height_mm       = 166, 
+		.type            = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+	},
 	.lanes = 4,
 	.format = MIPI_DSI_FMT_RGB888,
 	.init_cmds = pnc357db1_init_cmds,
