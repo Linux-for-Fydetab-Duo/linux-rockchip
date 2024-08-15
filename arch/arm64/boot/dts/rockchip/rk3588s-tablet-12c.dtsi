@@ -288,6 +288,7 @@
 
 		power-supply = <&vcc_avee>;
 		reset-gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
+		reset-enable-combined;
 		pinctrl-names = "default";
 		pinctrl-0 = <&lcd_rst_gpio>;
 
