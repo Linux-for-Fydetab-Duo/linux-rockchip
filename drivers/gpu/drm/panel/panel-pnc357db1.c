@@ -134,12 +134,17 @@ static int pnc357db1_enable(struct drm_panel *panel)
 
 	for (i = 0; i < desc->num_init_cmds; i++) {
 		const struct pnc357db1_init_cmd *cmd = &desc->init_cmds[i];
+		int cmd_len = sizeof(cmd->data);
 
-		// Send each command one by one
-		err = mipi_dsi_dcs_write_buffer(dsi, cmd->data, pnc357db1_INIT_CMD_LEN);
+		DRM_DEV_DEBUG(&dsi->dev, "Sending init command %u/%u: ", i + 1, desc->num_init_cmds);
+		for (int j = 0; j < cmd_len; j++)
+			DRM_DEV_DEBUG(&dsi->dev, "0x%02x ", cmd->data[j]);
+		DRM_DEV_DEBUG(&dsi->dev, "\n");
+
+		err = mipi_dsi_dcs_write_buffer(dsi, cmd->data, cmd_len);
 		if (err < 0) {
-			DRM_DEV_ERROR(dev, "failed to send init command %u/%u: %d\n", i + 1, desc->num_init_cmds, err);
-			return err;
+			DRM_DEV_ERROR(&dsi->dev, "failed to send init command %u/%u: %d\n", i + 1, desc->num_init_cmds, err);
+		return err;
 		}
 	}
 
@@ -253,8 +258,7 @@ static int pnc357db1_probe(struct mipi_dsi_device *dsi)
 		return -ENOMEM;
 
 	desc = of_device_get_match_data(dev);
-	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-			  MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM;
+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_NO_EOT_PACKET;
 	dsi->format = desc->format;
 	dsi->lanes = desc->lanes;
 
