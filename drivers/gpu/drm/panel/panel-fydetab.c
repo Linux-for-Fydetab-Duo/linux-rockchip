@@ -13,9 +13,10 @@
 #include <linux/delay.h>
 #include <linux/regulator/consumer.h>
 #include <linux/backlight.h>
-#include <linux/drm/drm_mipi_dsi.h>
-#include <linux/drm/drm_panel.h>
-#include <linux/mipi_dsi.h>
+#include <drm/drm_mipi_dsi.h>
+#include <drm/drm_panel.h>
+#include <drm/drm_modes.h>
+#include <video/mipi_display.h>
 
 #define PNC357DB1_4_WIDTH_MM   166
 #define PNC357DB1_4_HEIGHT_MM  266
