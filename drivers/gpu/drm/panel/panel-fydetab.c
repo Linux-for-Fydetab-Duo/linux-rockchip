@@ -421,7 +421,7 @@ static int pnc357db1_4_probe(struct mipi_dsi_device *dsi)
     drm_panel_add(&ctx->panel);
 
     dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-                      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_EOT_PACKET;
+                      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
     dsi->format = MIPI_DSI_FMT_RGB888;
     dsi->lanes = 4;
 
@@ -434,15 +434,13 @@ static int pnc357db1_4_probe(struct mipi_dsi_device *dsi)
     return 0;
 }
 
-static int pnc357db1_4_remove(struct mipi_dsi_device *dsi)
+static void pnc357db1_4_remove(struct mipi_dsi_device *dsi)
 {
     struct pnc357db1_4 *ctx = mipi_dsi_get_drvdata(dsi);
 
     drm_panel_remove(&ctx->panel);
     drm_panel_disable(&ctx->panel);
     drm_panel_unprepare(&ctx->panel);
-
-    return 0;
 }
 
 static const struct of_device_id pnc357db1_4_of_match[] = {
