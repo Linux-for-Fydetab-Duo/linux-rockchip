@@ -8,7 +8,7 @@ comment "handle all sensors"
 menuconfig SENSOR_DEVICE
 	tristate "handle angle,accel,compass,gyroscope,lsensor psensor etc"
 	default n
-	
+
 if SENSOR_DEVICE
 source "drivers/input/sensors/angle/Kconfig"
 source "drivers/input/sensors/accel/Kconfig"
@@ -19,5 +19,6 @@ source "drivers/input/sensors/psensor/Kconfig"
 source "drivers/input/sensors/temperature/Kconfig"
 source "drivers/input/sensors/pressure/Kconfig"
 source "drivers/input/sensors/hall/Kconfig"
+source "drivers/input/sensors/fingerprint/Kconfig"
 
 endif

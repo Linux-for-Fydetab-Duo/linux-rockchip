@@ -1,0 +1,10 @@
+menu "Fingerprint support"
+  depends on INPUT
+
+config MICROARRAY_FINGERPRINT
+  tristate "Microarray Fingerprint"
+  default n
+  help
+    Microarray fingerprint Microarray's 121/112/88/64/48 device.
+
+endmenu
