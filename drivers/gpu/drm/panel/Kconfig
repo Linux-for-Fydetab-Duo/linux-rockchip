@@ -752,13 +752,6 @@ config DRM_PANEL_XINPENG_XPP055C272
 	  XPP055C272 controller for 720x1280 LCD panels with MIPI/RGB/SPI
 	  system interfaces.
 
-config DRM_PANEL_FYDETAB
-	tristate "LCD panel on FydeTab with MIPI interface"
-	depends on DRM_MIPI_DSI
-	depends on DRM_PANEL_SIMPLE
-	help
-	  Say Y here if you want to enable support for FydeTab 1600x2600 LCD panel.
-
 config DRM_PANEL_INNOLUX_AFJ101_BA2131
 	tristate "Innolux AFJ101 BA2131 panel"
 	depends on OF
