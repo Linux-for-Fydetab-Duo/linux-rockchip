@@ -282,10 +282,9 @@
 	rockchip,lane-rate = <676000>;
 	dsi0_panel: panel@0 {
 		status = "okay";
-		compatible = "simple-panel-dsi";
+		compatible = "simple-panel-dsi-fyde";
 		reg = <0>;
 		backlight = <&backlight>;
-
 		power-supply = <&vcc_avee>;
 		reset-gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
 		reset-enable-combined;
@@ -369,7 +368,8 @@
 		];
 
 		panel-exit-sequence = [
-
+			39 10 01 28
+			39 28 01 10
 		];
 
 		width-mm = <166>;
@@ -418,6 +418,7 @@
 		};
 	};
 };
+
 &dsi1 {
 	status = "disabled";
 };
